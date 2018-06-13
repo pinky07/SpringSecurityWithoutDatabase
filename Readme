@@ -1,0 +1,20 @@
+following link: https://dzone.com/articles/spring-security-4-for-spring-mvc-using-spring-data
+refer this link for spring security theory
+
+In case there is a requirement to write our own queries we can do that too. In this application we have used userid as foreign key for the roles table. So in UserRolesRepository I have written my own query on the findRoleByUserName method just by 
+adding @Query annotation to this method.
+-Now that we are done with repositories, next step is to create classes required for spring security to use the data returned by the user repositories to authenticate users. Spring Security looks for an implementation of UserDetailsService interface that loads user specific data. So we have to write a class that implements UserDetailsService,
+ and override the one method that this interface has, loadbyusername 
+ 
+ - we have to autowire withine constructor or service or controller class for repository
+ -jo required information hai spring security ke liye, so humere entiry class ko customize krna hoga
+ for spring security or yaa fir ek new class create kre jisme spring security se relate information ho, jo spring security ko chahiye
+ ( Spring security does not require all the information that are in the user table but only a few properties to perform authentication and authorization. So in order to return only the required details to spring security,
+  we write a class that implements UserDetail interface.)
+  *what does UserDetail interface
+  - provides the core user information
+  
+  how spring security works:
+  database se list of user name nikalenge, fir us list ko
+  spring scurity ka class jo implements kiya ho is class ko ( UserDetails) usko pass krenge
+  is class me grantAuthority kr ke method hai, usko username ka list pass krenge
